@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import 'routes/app_routes.dart';
 import 'routes/routes.dart';
-import 'utils/constants/colors.dart';
 import 'utils/constants/text_strings.dart';
 import 'utils/device/web_material_scroll.dart';
 import 'utils/theme/theme.dart';

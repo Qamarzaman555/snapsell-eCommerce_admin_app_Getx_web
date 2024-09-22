@@ -27,4 +27,22 @@ class TRoutes {
   static const customerDetails = '/customerDetails';
 
   static const orders = '/orders';
+  static const coupons = '/coupons';
+  static const settings = '/settings';
+  static const profile = '/profile';
+
+  static const sideBarMenuItems = [
+    login,
+    forgetPassword,
+    dashboard,
+    media,
+    products,
+    categories,
+    brands,
+    customers,
+    orders,
+    coupons,
+    settings,
+    profile,
+  ];
 }
