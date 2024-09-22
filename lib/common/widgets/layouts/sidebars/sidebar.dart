@@ -49,19 +49,19 @@ class TSidebar extends StatelessWidget {
 
                     // Menu Items
                     const TMenuItem(
-                      route: TRoutes.dashboard,
+                      route: TRoutes.login,
                       icon: Iconsax.status,
-                      itemName: 'Dashboard',
+                      itemName: 'Responsive',
                     ),
                     const TMenuItem(
                       route: TRoutes.login,
-                      icon: Iconsax.status,
-                      itemName: 'Dashboard',
+                      icon: Iconsax.activity,
+                      itemName: 'First',
                     ),
                     const TMenuItem(
-                      route: TRoutes.banners,
-                      icon: Iconsax.status,
-                      itemName: 'Dashboard',
+                      route: TRoutes.login,
+                      icon: Iconsax.screenmirroring,
+                      itemName: 'Second',
                     ),
                   ],
                 ),

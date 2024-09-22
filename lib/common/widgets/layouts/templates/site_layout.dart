@@ -12,7 +12,7 @@ class TSiteTemplete extends StatelessWidget {
     this.desktop,
     this.tablet,
     this.mobile,
-    this.userLayout = true,
+    this.useLayout = true,
   });
 
   /// Widget for desktop layout
@@ -25,18 +25,18 @@ class TSiteTemplete extends StatelessWidget {
   final Widget? mobile;
 
   /// Flag to determine whether to use the layout
-  final bool userLayout;
+  final bool useLayout;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: TResponsiveWidget(
         desktop:
-            userLayout ? DesktopLayout(body: desktop) : desktop ?? Container(),
-        tablet: userLayout
+            useLayout ? DesktopLayout(body: desktop) : desktop ?? Container(),
+        tablet: useLayout
             ? TabletLayout(body: tablet ?? desktop)
             : tablet ?? desktop ?? Container(),
-        mobile: userLayout
+        mobile: useLayout
             ? MobileLayout(body: mobile ?? desktop)
             : mobile ?? desktop ?? Container(),
       ),

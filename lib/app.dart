@@ -19,7 +19,7 @@ class App extends StatelessWidget {
         darkTheme: TAppTheme.darkTheme,
         debugShowCheckedModeBanner: false,
         scrollBehavior: MyCustomScrollBehavior(),
-        initialRoute: TRoutes.responsiveDesignScreen,
+        initialRoute: TRoutes.login,
         unknownRoute: GetPage(
             name: '/page-not-found',
             page: () =>
