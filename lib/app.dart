@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'bindings/general_bindings.dart';
 import 'routes/app_routes.dart';
 import 'routes/routes.dart';
 import 'utils/constants/text_strings.dart';
@@ -13,24 +14,25 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        title: TTexts.appName,
-        themeMode: ThemeMode.light,
-        theme: TAppTheme.lightTheme,
-        darkTheme: TAppTheme.darkTheme,
-        debugShowCheckedModeBanner: false,
-        scrollBehavior: MyCustomScrollBehavior(),
-        initialRoute: TRoutes.login,
-        unknownRoute: GetPage(
-            name: '/page-not-found',
-            page: () =>
-                const Scaffold(body: Center(child: Text('Page Not Found')))),
-        getPages: TAppRoute.pages
-        // home: const Scaffold(
-        //   backgroundColor: TColors.primary,
-        //   body: Center(
-        //     child: CircularProgressIndicator(color: Colors.white),
-        //   ),
-        // ),
-        );
+      title: TTexts.appName,
+      themeMode: ThemeMode.light,
+      getPages: TAppRoute.pages,
+      theme: TAppTheme.lightTheme,
+      initialRoute: TRoutes.login,
+      darkTheme: TAppTheme.darkTheme,
+      debugShowCheckedModeBanner: false,
+      initialBinding: GeneralBindings(),
+      scrollBehavior: MyCustomScrollBehavior(),
+      unknownRoute: GetPage(
+          name: '/page-not-found',
+          page: () =>
+              const Scaffold(body: Center(child: Text('Page Not Found')))),
+      // home: const Scaffold(
+      //   backgroundColor: TColors.primary,
+      //   body: Center(
+      //     child: CircularProgressIndicator(color: Colors.white),
+      //   ),
+      // ),
+    );
   }
 }

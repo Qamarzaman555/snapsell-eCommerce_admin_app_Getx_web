@@ -4,6 +4,7 @@ import '../features/authentication/screens/forget_password/forget_password.dart'
 import '../features/authentication/screens/login/login.dart';
 import '../features/authentication/screens/reset_password/reset_password.dart';
 import 'routes.dart';
+import 'routes_middleware.dart';
 
 class TAppRoute {
   static final List<GetPage> pages = [
