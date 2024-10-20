@@ -37,7 +37,7 @@ class LoginController extends GetxController {
     try {
       // Start Loading
       TFullScreenLoader.openLoadingDialog(
-          'Registering Admin Account...', TImages.docerAnimation);
+          'Signing In Account...', TImages.docerAnimation);
 
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
@@ -58,7 +58,7 @@ class LoginController extends GetxController {
         localStorage.write('REMEMBER_ME_PASSWORD', password.text.trim());
       }
 
-      // Lgin user using Email and Password Authentication
+      // Login user using Email and Password Authentication
       await AuthenticationRepository.instance
           .loginWithEmailAndPassword(email.text.trim(), password.text.trim());
 
@@ -73,7 +73,7 @@ class LoginController extends GetxController {
         await AuthenticationRepository.instance.logout();
         TLoaders.errorSnackBar(
             title: 'Not Authorized',
-            message: 'You are not authroized or do have access. Contact Admin');
+            message: 'You are not authorized or do have access. Contact Admin');
       } else {
         // Redirect
         AuthenticationRepository.instance.screenRedirect();
@@ -87,7 +87,7 @@ class LoginController extends GetxController {
     }
   }
 
-  /// Handles registeration of admin user
+  /// Handles registration of admin user
   Future<void> registerAdmin() async {
     try {
       // Start Loading

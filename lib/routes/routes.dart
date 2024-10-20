@@ -31,8 +31,6 @@ class TRoutes {
   static const profile = '/profile';
 
   static const sideBarMenuItems = [
-    login,
-    forgetPassword,
     dashboard,
     media,
     products,

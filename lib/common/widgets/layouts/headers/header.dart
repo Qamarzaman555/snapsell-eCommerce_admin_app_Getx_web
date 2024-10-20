@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:snapsell_web/common/widgets/shimmers/shimmer.dart';
 
+import '../../../../features/authentication/controllers/user_controller.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/enums.dart';
 import '../../../../utils/constants/image_strings.dart';
@@ -17,6 +20,7 @@ class THeader extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return Container(
       decoration: const BoxDecoration(
         color: TColors.white,
@@ -31,6 +35,7 @@ class THeader extends StatelessWidget implements PreferredSizeWidget {
                 onPressed: () => scaffoldKey?.currentState?.openDrawer(),
                 icon: const Icon(Iconsax.menu))
             : null,
+        automaticallyImplyLeading: false,
 
         /// Search Field
         title: TDeviceUtils.isDesktopScreen(context)
@@ -51,7 +56,7 @@ class THeader extends StatelessWidget implements PreferredSizeWidget {
             IconButton(
                 onPressed: () {}, icon: const Icon(Iconsax.search_normal)),
 
-          // Notificatio Icon
+          // Notification Icon
           IconButton(onPressed: () {}, icon: const Icon(Iconsax.notification)),
           const SizedBox(width: TSizes.spaceBtwItems / 2),
 
@@ -59,26 +64,38 @@ class THeader extends StatelessWidget implements PreferredSizeWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const TRoundedImage(
-                width: 40,
-                height: 40,
-                padding: 2,
-                imageType: ImageType.asset,
-                image: TImages.user,
+              Obx(
+                () => TRoundedImage(
+                  width: 40,
+                  height: 40,
+                  padding: 2,
+                  imageType: controller.user.value.profilePicture.isNotEmpty
+                      ? ImageType.asset
+                      : ImageType.asset,
+                  image: controller.user.value.profilePicture.isNotEmpty
+                      ? controller.user.value.profilePicture
+                      : TImages.user,
+                ),
               ),
               const SizedBox(width: TSizes.sm),
 
               // Name and Email
               if (!TDeviceUtils.isMobileScreen(context))
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text('Name of User',
-                        style: Theme.of(context).textTheme.titleLarge),
-                    Text('user@gmail.com',
-                        style: Theme.of(context).textTheme.labelMedium),
-                  ],
+                Obx(
+                  () => Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      controller.loading.value
+                          ? const TShimmerEffect(width: 50, height: 13)
+                          : Text(controller.user.value.fullName,
+                              style: Theme.of(context).textTheme.titleLarge),
+                      controller.loading.value
+                          ? const TShimmerEffect(width: 50, height: 13)
+                          : Text(controller.user.value.email,
+                              style: Theme.of(context).textTheme.labelMedium),
+                    ],
+                  ),
                 )
             ],
           )

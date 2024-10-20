@@ -49,19 +49,54 @@ class TSidebar extends StatelessWidget {
 
                     // Menu Items
                     const TMenuItem(
-                      route: TRoutes.login,
-                      icon: Iconsax.status,
-                      itemName: 'Responsive',
+                      route: TRoutes.dashboard,
+                      icon: Iconsax.music_dashboard,
+                      itemName: 'Dashboard',
                     ),
                     const TMenuItem(
-                      route: TRoutes.login,
-                      icon: Iconsax.activity,
-                      itemName: 'First',
-                    ),
-                    const TMenuItem(
-                      route: TRoutes.login,
+                      route: TRoutes.media,
                       icon: Iconsax.screenmirroring,
-                      itemName: 'Second',
+                      itemName: 'Media',
+                    ),
+                    const TMenuItem(
+                      route: TRoutes.products,
+                      icon: Iconsax.shield,
+                      itemName: 'Products',
+                    ),
+                    const TMenuItem(
+                      route: TRoutes.categories,
+                      icon: Iconsax.category,
+                      itemName: 'Categories',
+                    ),
+                    const TMenuItem(
+                      route: TRoutes.brands,
+                      icon: Iconsax.activity,
+                      itemName: 'Brands',
+                    ),
+                    const TMenuItem(
+                      route: TRoutes.customers,
+                      icon: Iconsax.personalcard,
+                      itemName: 'Customers',
+                    ),
+                    const TMenuItem(
+                      route: TRoutes.orders,
+                      icon: Iconsax.monitor_recorder,
+                      itemName: 'Orders',
+                    ),
+                    const TMenuItem(
+                      route: TRoutes.coupons,
+                      icon: Iconsax.code,
+                      itemName: 'Coupons',
+                    ),
+                    const TMenuItem(
+                      route: TRoutes.settings,
+                      icon: Iconsax.setting,
+                      itemName: 'Settings',
+                    ),
+                    const TMenuItem(
+                      route: TRoutes.profile,
+                      icon: Iconsax.profile,
+                      itemName: 'Profile',
                     ),
                   ],
                 ),
