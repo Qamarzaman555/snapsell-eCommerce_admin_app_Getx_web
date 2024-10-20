@@ -50,7 +50,7 @@ class TSidebar extends StatelessWidget {
                     // Menu Items
                     const TMenuItem(
                       route: TRoutes.dashboard,
-                      icon: Iconsax.music_dashboard,
+                      icon: Iconsax.status,
                       itemName: 'Dashboard',
                     ),
                     const TMenuItem(
