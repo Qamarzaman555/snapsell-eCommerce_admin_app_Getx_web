@@ -18,7 +18,7 @@ class AuthenticationRepository extends GetxController {
   User? get authUser => _auth.currentUser;
 
   // Get IsAuthenticated User
-  bool get IsAuthenticated => _auth.currentUser != null;
+  bool get isAuthenticated => _auth.currentUser != null;
 
   @override
   void onReady() {
@@ -53,7 +53,7 @@ class AuthenticationRepository extends GetxController {
     } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
-      throw 'Somwthing went wrong. Please  try again';
+      throw 'Something went wrong. Please  try again';
     }
   }
 
@@ -72,13 +72,13 @@ class AuthenticationRepository extends GetxController {
     } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
-      throw 'Somwthing went wrong. Please  try again';
+      throw 'Something went wrong. Please  try again';
     }
   }
 
   // REGISTER USER BY ADMIN
 
-  // EMAIL VEARIFICATION
+  // EMAIL VERIFICATION
 
   // FORGOT PASSWORD
 
@@ -98,7 +98,7 @@ class AuthenticationRepository extends GetxController {
     } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
-      throw 'Somwthing went wrong. Please  try again';
+      throw 'Something went wrong. Please  try again';
     }
   }
 

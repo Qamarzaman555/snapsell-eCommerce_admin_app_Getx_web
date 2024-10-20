@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+
 import '../../../utils/constants/colors.dart';
 
 /// Widget for displaying action buttons for table rows
 class TTableActionButtons extends StatelessWidget {
   const TTableActionButtons({
-    Key? key,
+    super.key,
     this.view = false,
     this.edit = true,
     this.delete = true,
     this.onViewPressed,
     this.onEditPressed,
     this.onDeletePressed,
-  }) : super(key: key);
+  });
 
   /// Flag to determine whether the view button is enabled
   final bool view;
