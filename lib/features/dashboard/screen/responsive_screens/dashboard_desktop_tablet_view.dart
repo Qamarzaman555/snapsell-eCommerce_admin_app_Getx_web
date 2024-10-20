@@ -3,9 +3,10 @@ import 'dart:developer';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:snapsell_web/features/dashboard/controller/dashboard_controller.dart';
 
-import '../../../../utils/constants/colors.dart';
+import '../../../../common/widgets/data_table/paginated_data_table.dart';
 import '../../../../utils/constants/sizes.dart';
 
 class DashboardScreenDesktopTablet extends StatelessWidget {
@@ -13,47 +14,55 @@ class DashboardScreenDesktopTablet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final DashBoardController controller = Get.put(DashBoardController());
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(30),
-        child: Center(
-          child: Obx(
-            () {
-              return PaginatedDataTable2(
-                minWidth: 786,
-                rowsPerPage: 10,
-                columnSpacing: 12,
-                dataRowHeight: 56,
-                dividerThickness: 0,
-                horizontalMargin: 12,
-                headingTextStyle: Theme.of(context).textTheme.titleMedium,
-                headingRowColor: WidgetStateProperty.resolveWith(
-                    (states) => TColors.primaryBackground),
-                headingRowDecoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(TSizes.borderRadiusMd),
-                    topRight: Radius.circular(TSizes.borderRadiusMd),
-                  ),
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                TextFormField(
+                  controller: controller.searchTextController,
+                  onChanged: (query) => controller.searchQuery(query),
+                  decoration: const InputDecoration(
+                      hintText: 'Search',
+                      prefixIcon: Icon(Iconsax.search_normal)),
                 ),
+                const SizedBox(height: TSizes.spaceBtwSections),
+                Obx(
+                  () {
+                    // Order & Selected Rows are Hidden => Just to update the UI => Obx => [ProductsRows]
+                    Visibility(
+                      visible: false,
+                      child:
+                          Text(controller.filteredDataList.length.toString()),
+                    );
 
-                /// Check Box Column
-                showCheckboxColumn: true,
+                    return TPaginatedDataTable(
+                      /// SORTING
+                      sortAscending: controller.sortAscending.value,
 
-                /// PAGINATION
-                showFirstLastButtons: true,
-                onPageChanged: (value) {},
-                renderEmptyRowsInTheEnd: false,
-                onRowsPerPageChanged: (noOfRows) {},
+                      sortColumnIndex: controller.sortColumnIndex.value,
 
-                columns: const [
-                  DataColumn2(label: Text('Column 1')),
-                  DataColumn2(label: Text('Column 2')),
-                  DataColumn2(label: Text('Column 3')),
-                  DataColumn2(label: Text('Column 4')),
-                ],
-                source: MyData(),
-              );
-            },
+                      columns: [
+                        const DataColumn2(label: Text('Column 1')),
+                        DataColumn2(
+                            label: const Text('Column 2'),
+                            onSort: (columnIndex, ascending) =>
+                                controller.sortById(columnIndex, ascending)),
+                        const DataColumn2(label: Text('Column 3')),
+                        DataColumn2(
+                            label: const Text('Column 4'),
+                            onSort: (columnIndex, ascending) =>
+                                controller.sortById(columnIndex, ascending)),
+                      ],
+                      source: MyData(),
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -65,7 +74,7 @@ class MyData extends DataTableSource {
   final DashBoardController controller = Get.put(DashBoardController());
   @override
   DataRow? getRow(int index) {
-    final data = controller.dataList[index];
+    final data = controller.filteredDataList[index];
     return DataRow2(
       onTap: () {
         log('Row ${index + 1} is Clicked');
@@ -86,7 +95,7 @@ class MyData extends DataTableSource {
   bool get isRowCountApproximate => false;
 
   @override
-  int get rowCount => controller.dataList.length;
+  int get rowCount => controller.filteredDataList.length;
 
   @override
   int get selectedRowCount => 0;

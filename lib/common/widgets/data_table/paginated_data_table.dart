@@ -10,7 +10,7 @@ import '../loaders/animation_loader.dart';
 /// Custom PaginatedDataTable widget with additional features
 class TPaginatedDataTable extends StatelessWidget {
   const TPaginatedDataTable({
-    Key? key,
+    super.key,
     required this.columns,
     required this.source,
     this.rowsPerPage = 10,
@@ -20,7 +20,7 @@ class TPaginatedDataTable extends StatelessWidget {
     this.dataRowHeight = TSizes.xl * 2,
     this.sortAscending = true,
     this.minWidth = 1000,
-  }) : super(key: key);
+  });
 
   /// Whether to sort the DataTable in ascending or descending order.
   final bool sortAscending;
@@ -44,7 +44,7 @@ class TPaginatedDataTable extends StatelessWidget {
   final double dataRowHeight;
 
   /// Height of the entire DataTable.
-  final double tableHeight;
+  final double? tableHeight;
 
   /// Minimum Width of the entire DataTable.
   final double? minWidth;
@@ -56,7 +56,8 @@ class TPaginatedDataTable extends StatelessWidget {
       height: tableHeight,
       child: Theme(
         // Use to set the Backend color
-        data: Theme.of(context).copyWith(cardTheme: const CardTheme(color: Colors.white, elevation: 0)),
+        data: Theme.of(context).copyWith(
+            cardTheme: const CardTheme(color: Colors.white, elevation: 0)),
         child: PaginatedDataTable2(
           source: source,
           columns: columns,
@@ -74,8 +75,13 @@ class TPaginatedDataTable extends StatelessWidget {
           onRowsPerPageChanged: (noOfRows) {},
           sortColumnIndex: sortColumnIndex,
           headingTextStyle: Theme.of(context).textTheme.titleMedium,
-          headingRowColor: MaterialStateProperty.resolveWith((states) => TColors.primaryBackground),
-          empty: TAnimationLoaderWidget(animation: TImages.packageAnimation, text: 'Nothing Found', height: 200, width: 200),
+          headingRowColor: WidgetStateProperty.resolveWith(
+              (states) => TColors.primaryBackground),
+          empty: TAnimationLoaderWidget(
+              animation: TImages.packageAnimation,
+              text: 'Nothing Found',
+              height: 200,
+              width: 200),
           headingRowDecoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(TSizes.borderRadiusMd),
@@ -84,7 +90,8 @@ class TPaginatedDataTable extends StatelessWidget {
           ),
           sortArrowBuilder: (bool ascending, bool sorted) {
             if (sorted) {
-              return Icon(ascending ? Iconsax.arrow_up_3 : Iconsax.arrow_down, size: TSizes.iconSm);
+              return Icon(ascending ? Iconsax.arrow_up_3 : Iconsax.arrow_down,
+                  size: TSizes.iconSm);
             } else {
               return const Icon(Iconsax.arrow_3, size: TSizes.iconSm);
             }
