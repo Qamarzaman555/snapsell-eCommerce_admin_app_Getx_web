@@ -7,12 +7,12 @@ import '../features/brands/screen/brands/brands.dart';
 import '../features/categories/screen/categories/categories.dart';
 import '../features/coupons/screen/coupons/coupons.dart';
 import '../features/customers/screen/customers/customers.dart';
-import '../features/dashboard/screen/dashboard/dashboard.dart';
 import '../features/media/screen/media/media.dart';
 import '../features/orders/screen/orders/orders.dart';
 import '../features/products/screen/products/products.dart';
 import '../features/profile/screen/profile/profile.dart';
 import '../features/settings/screen/settings/settings.dart';
+import '../features/shop/screens/dashboard/screen/dashboard/dashboard.dart';
 import 'routes.dart';
 import 'routes_middleware.dart';
 

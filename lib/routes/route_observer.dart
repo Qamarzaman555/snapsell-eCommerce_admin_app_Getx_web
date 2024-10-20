@@ -4,16 +4,16 @@ import 'package:get/get.dart';
 import '../common/widgets/layouts/sidebars/sidebar_controller.dart';
 import 'routes.dart';
 
-class RouteOberver extends GetObserver {
+class RouteObserver extends GetObserver {
   /// Called when a route is popped from the navigation stack
   @override
   void didPop(Route<dynamic>? route, Route<dynamic>? previousRoute) {
     final sidebarController = Get.put(SidebarController());
 
-    if (previousRoute != null) {
+    if (route != null) {
       // Check the route name and update the active item in the sidebar accordingly
       for (var routeName in TRoutes.sideBarMenuItems) {
-        if (previousRoute.settings.name == routeName) {
+        if (route.settings.name == routeName) {
           sidebarController.activeItem.value = routeName;
         }
       }
